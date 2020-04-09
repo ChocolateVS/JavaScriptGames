@@ -1,5 +1,7 @@
 /////////////MENU///////////
 document.getElementById("menu").style.display = "block";
+document.getElementById("restartMenu").style.display = "none";
+document.getElementById("restartAllMenu").style.display = "none";
 document.getElementById("velocitySpan").style.display = "none";
 //document.getElementById("adjust_speed").style.display = "block";
 document.getElementById("radiusSpan").style.display = "block";
@@ -41,6 +43,56 @@ var dissapear = true;
 var randomColors = true;
 var randomRadius = false;
 var randomVelocity = true;
+var remove = false;
+
+var cKey = false;
+var sKey = true;
+
+var menu = true;
+
+window.addEventListener("keydown", event => {
+    if (event.keyCode == 32 || event.keyCode == 13 && menu) {
+        startBtn();
+    }
+    if (event.keyCode == 82 && !menu) { //R
+       restart();
+       return; 
+    }
+    if (event.keyCode == 27 && !menu || event.keyCode == 77 && !menu) { //ESC
+       openMenu();
+       return; 
+    }
+    if (event.keyCode == 67) { //S
+       if (cKey) {
+           cKey = false;
+           randomColors = true;
+           document.querySelector("input[name=randColor]").checked = true;
+           return;
+       }
+       if (!cKey) {
+           cKey = true;
+           randomColors = false;
+           document.querySelector("input[name=randColor]").checked = false;
+           return;
+       }
+    }
+    if (event.keyCode == 83) { //C
+       if (sKey) {
+           sKey = false;
+           randomRadius = true;
+           document.querySelector("input[name=randSize]").checked = true;
+           return;
+       }
+       if (!sKey) {
+           sKey = true;
+           randomRadius = false;
+           document.querySelector("input[name=randSize]").checked = false;
+           return;
+       }
+       return; 
+    }
+});
+
 
 checkbox0.addEventListener( 'change', function() {
     console.log("checked");
@@ -104,36 +156,50 @@ function generate() {
 
 animate(); 
 
+function startBtn() {
+    remove = false;
+    start();
+}
 function start() { 
     document.getElementById("canvas").style.display = "block";
     document.getElementById("menu").style.display = "none";
+    menu = false;
    
     window.addEventListener("resize", function() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     });
-        
-    window.addEventListener("click", function(event) {
-        var x = event.clientX;
-        var y = event.clientY;
+    if (remove == true) {
+        window.removeEventListener("mousedown", MouseDown);
+    }
+    window.addEventListener("mousedown", MouseDown);
+    
+    function MouseDown(event) {
+        if (!remove) {
+            var x = event.clientX;
+            var y = event.clientY;
 
-        circleArray.forEach(element => {
-            if (x > element.x - element.r && x < element.x + element.r && y > element.y - element.r && y < element.y + element.r) {
-                //console.log("X: " + x + ", EX: " + Math.round(element.x) +  ", Y: " + y + ", EY: " + Math.round(element.y));
-                //console.log("Index: ", element.index, dissapear);
-                if (dissapear == true) { 
-                    bad.push(element.index); 
-                    element.x = 0 - (2 * element.r);
-                    element.y = 0 - (2 * element.r);
+            circleArray.forEach(element => {
+                if (x > element.x - element.r && x < element.x + element.r && y > element.y - element.r && y < element.y + element.r) {
+                    if (dissapear == true) { 
+                        bad.push(element.index); 
+                        element.x = 0 - (2 * element.r);
+                        element.y = 0 - (2 * element.r);
+                    }
+                    score ++;
+                    console.log(score);
+                    if (element.index == 0) {
+                        document.getElementById("restartMenu").style.display = "block";
+                        document.getElementById("score").innerHTML = score;
+                    }
+                    if (score == numberCircles) {
+                        document.getElementById("restartAllMenu").style.display = "block";
+                        document.getElementById("restartMenu").style.display = "none";
+                    }
                 }
-                score ++;
-                console.log(score);
-                if (element.index == 0) {
-                    alert("DUBS, Score: " + score.toString());
-                }
-            }
-        });        
-    });
+            });        
+        }
+    }
 }
 
 function animate(){
@@ -208,6 +274,36 @@ function randomColor() {
     else if (!randomColors) {
         return "blue";
     }
+}
+
+function openMenu() {
+    menu = true;
+    score = 0;
+    circleArray = [];
+    bad = [];
+    generate();
+    remove = true;
+    document.getElementById("menu").style.display = "block";
+    document.getElementById("restartMenu").style.display = "none";
+    document.getElementById("restartAllMenu").style.display = "none";
+}
+
+function continueGame(){
+    menu = false;
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("restartMenu").style.display = "none";
+    document.getElementById("restartAllMenu").style.display = "none";
+}
+
+function restart(){
+    menu = false;
+    score = 0;
+    circleArray = [];
+    bad = [];
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("restartMenu").style.display = "none";
+    document.getElementById("restartAllMenu").style.display = "none";
+    generate();
 }
 /*
 //////PROJECT//////

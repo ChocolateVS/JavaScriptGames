@@ -8,9 +8,11 @@
             <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
         </header>
         <main>
-            <div id="menu">
-                <h1>JS Hidden Circle</h1>
-                <h2>Find the hidden circle</h2>
+            <div class="menu" id="menu">
+                <center>
+                    <h1>Kill the Corona</h1>
+                    <h2>Find the hidden circle</h2>
+                </center>
                 <div id="options">
                     <div class="checkbox">
                         <input name="dis" type="checkbox" id="checkbox_0" checked>
@@ -41,11 +43,32 @@
                     <span id="velocitySpan">CIRCLE VELOCITY: <input id="velocity" type="range" min="1" max="100" class="slider" value="50"></span>
                 </div>
                 <br>
-                <center><button id="start" onclick="start()">START</button></center>
+                <center><button id="start" onclick="startBtn()">START</button></center>
+            </div>
+            <div class="menu" id="restartMenu">
+                <center>
+                    <h1>You Killed It!</h1>
+                    <span>SCORE: <span id="score"></span></span><br>
+                    <button onClick="openMenu()" id="menuBtn">MENU</button>
+                    <button onClick="restart()" id="restart">RESTART</button><br>
+                    <button onClick="continueGame()" id="continue">NOOOO LEMME KILL EM ALL</button>
+                </center>
+            </div>
+            <div class="menu" id="restartAllMenu">
+                <center>
+                    <h1>You Killed Em All!</h1>
+                    <button onClick="openMenu()" id="menuBtn">MENU</button>
+                    <button onClick="restart()" id="restart">RESTART</button><br>
+                </center>
             </div>
             <canvas id="canvas" class="canvas"></canvas>
         </main>
         <footer>
+            START: ENTER / SPACE<br>
+            RESTART: R <br>
+            MENU: ESC / M <br>
+            TOGGLE RANDOM COLOR: C <br>
+            TOGGLE RANDOM SIZE: S
         </footer>
     </body>
     <script src="assets/js/script.js"></script>
