@@ -1,0 +1,50 @@
+body {
+    margin:0;
+    padding:0;
+    background-color:rgba(0,0,0,0.7);
+    font-family:"Roboto", monospace;
+    color: white;
+}
+
+html{
+    margin:0;
+}
+
+h1 {
+    margin-top:0;
+}
+#menu {
+  padding: 40px;
+  background-color: rgba(0,0,0,0.7);
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+button {
+    text-align: center;
+    border:none;
+    padding:10;
+    width: 100px;
+    height: 30px;
+    font-family:"Roboto", monospace;
+}
+
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: auto; /* Full-width */
+  height: 20px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  transition: opacity .2s;
+  position: relative;
+}
+
+.slider:hover {
+  opacity: 1;
+}

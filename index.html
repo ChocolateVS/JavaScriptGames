@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <header>
+            <title>JS THINGS</title>
+            <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+            <link rel="stylesheet" type="text/css" href="assets/css/checkBox.css">
+            <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+        </header>
+        <main>
+            <div id="menu">
+                <h1>JS Hidden Circle</h1>
+                <h2>Find the hidden circle</h2>
+                <div id="options">
+                    <div class="checkbox">
+                        <input name="dis" type="checkbox" id="checkbox_0" checked>
+                        <label for="checkbox_0">DISSPEARING CIRCLES</label>
+                    </div> 
+                    <div class="checkbox">
+                        <input name="randColor" type="checkbox" id="checkbox_1" checked>
+                        <label for="checkbox_1">RANDOM COLORS</label>
+                    </div> 
+                    <div class="checkbox">
+                        <input name="randSize" type="checkbox" id="checkbox_2">
+                        <label for="checkbox_2">RANDOM RADIUS</label>
+                    </div> 
+                    <div class="checkbox">
+                        <input name="randSpeed" type="checkbox" id="checkbox_3" checked>
+                        <label for="checkbox_3">RANDOM VELOCITY</label>
+                    </div> 
+                    <span id="numCircles">NUMBER OF CIRCLES: <input id="circles" type="range" min="1" max="2000" class="slider" value="50"></span>
+                    <span id="radiusSpan">CIRCLE RADIUS: <input id="radius" type="range" min="1" max="50" class="slider" value="35"></span>
+                    <!--<div id="adjust_speed">
+                        <span class="span">MAX VELOCITY: <input name="sliderMaxV" id="max_speed" type="range" min="1" max="100" class="slider" value="50"></span><br>
+                        <span class="span">MIN VELOCITY: <input name="sliderMinV" id="min_speed" type="range" min="1" max="100" class="slider" value="50"></span> 
+                    </div>
+                    <div id="adjust_radius">
+                        <span class="span">MAX RADIUS: <input name="sliderMaxR" id="max_radius" type="range" min="1" max="100" class="slider" value="50"></span><br>
+                        <span class="span">MIN RADIUS: <input name="sliderMinR" id="min_radius" type="range" min="1" max="100" class="slider" value="50"></span> 
+                    </div>-->
+                    <span id="velocitySpan">CIRCLE VELOCITY: <input id="velocity" type="range" min="1" max="100" class="slider" value="50"></span>
+                </div>
+                <br>
+                <center><button id="start" onclick="start()">START</button></center>
+            </div>
+            <canvas id="canvas" class="canvas"></canvas>
+        </main>
+        <footer>
+        </footer>
+    </body>
+    <script src="assets/js/script.js"></script>
+</html>
