@@ -1,13 +1,10 @@
-/////////////MENU SPREADDDDDD///////////
+/////////////MENU///////////
 document.getElementById("menu").style.display = "block";
 document.getElementById("restartMenu").style.display = "none";
 document.getElementById("restartAllMenu").style.display = "none";
 document.getElementById("velocitySpan").style.display = "none";
-//document.getElementById("adjust_speed").style.display = "block";
 document.getElementById("radiusSpan").style.display = "block";
 //CHECKBOXES
-var checkbox0 = document.querySelector("input[name=dis]");
-var checkbox1 = document.querySelector("input[name=randColor]");
 var checkbox2 = document.querySelector("input[name=randSize]");
 var checkbox3 = document.querySelector("input[name=randSpeed]");
 
@@ -62,20 +59,6 @@ window.addEventListener("keydown", event => {
        openMenu();
        return; 
     }
-    if (event.keyCode == 67) { //S
-       if (cKey) {
-           cKey = false;
-           randomColors = true;
-           document.querySelector("input[name=randColor]").checked = true;
-           return;
-       }
-       if (!cKey) {
-           cKey = true;
-           randomColors = false;
-           document.querySelector("input[name=randColor]").checked = false;
-           return;
-       }
-    }
     if (event.keyCode == 83) { //C
        if (sKey) {
            sKey = false;
@@ -90,25 +73,6 @@ window.addEventListener("keydown", event => {
            return;
        }
        return; 
-    }
-});
-
-
-checkbox0.addEventListener( 'change', function() {
-    console.log("checked");
-    if(this.checked) {
-        dissapear = true;
-    } else {
-        dissapear = false;
-    }
-});
-
-checkbox1.addEventListener( 'change', function() {
-    console.log("checked");
-    if(this.checked) {
-        randomColors = true;
-    } else {
-        randomColors = false;
     }
 });
 
@@ -138,6 +102,7 @@ checkbox3.addEventListener( 'change', function() {
 generate();
 function generate() {
     circleArray = [];
+    
     for (i = 0; i < numberCircles; i++){
         var index = i;
         var rRand = Math.random() * (50 - 1) + 1;
@@ -148,10 +113,22 @@ function generate() {
         var dySet = 10;
         var dx = 10 * (Math.random() - 0.5);
         var dy = 10 * (Math.random() - 0.5);
-        var color = randomColor();
-
-        circleArray.push(new DrawCircle(x, y, r, dx, dy, color, index, rRand, dxSet, dySet));
+        var color = "white";
+        var type = 0;
+        circleArray.push(new DrawCircle(x, y, r, dx, dy, color, index, rRand, dxSet, dySet, type));
     }
+    var index = numberCircles + 1;
+    var rRand = Math.random() * (50 - 1) + 1;
+    var r = 35;
+    var x = Math.random() * (innerWidth - r * 2) + r;
+    var y = Math.random() * (innerHeight - r * 2) + r;
+    var dxSet = 10;
+    var dySet = 10;
+    var dx = 15 * (Math.random() - 0.4);
+    var dy = 15 * (Math.random() - 0.4);
+    var color = "red";
+    var type = 1;
+    circleArray.push(new DrawCircle(x, y, r, dx, dy, color, index, rRand, dxSet, dySet, type));
 }
 
 animate(); 
@@ -180,12 +157,10 @@ function start() {
             var y = event.clientY;
 
             circleArray.forEach(element => {
-                if (x > element.x - element.r && x < element.x + element.r && y > element.y - element.r && y < element.y + element.r) {
-                    if (dissapear == true) { 
-                        bad.push(element.index); 
-                        element.x = 0 - (2 * element.r);
-                        element.y = 0 - (2 * element.r);
-                    }
+                if (x > element.x - element.r && x < element.x + element.r && y > element.y - element.r && y < element.y + element.r && element.type == 1) {
+                    bad.push(element.index); 
+                    element.x = 0 - (2 * element.r);
+                    element.y = 0 - (2 * element.r);
                     score ++;
                     console.log(score);
                     if (element.index == 0) {
@@ -213,7 +188,7 @@ function animate(){
 }
 
 
-function DrawCircle(x, y, r, dx, dy, color, index, rRand, dxSet, dySet) {
+function DrawCircle(x, y, r, dx, dy, color, index, rRand, dxSet, dySet, type) {
     this.index = index;
     
     this.x = x;
@@ -223,6 +198,7 @@ function DrawCircle(x, y, r, dx, dy, color, index, rRand, dxSet, dySet) {
     this.dx = dx;
     this.dy = dy;
     this.color = color;
+    this.type = type;
     this.draw = function() {
             c.beginPath();
             if (randomColors == true) {
@@ -253,26 +229,23 @@ function DrawCircle(x, y, r, dx, dy, color, index, rRand, dxSet, dySet) {
             this.dy = -this.dy;
         }
         
+        if (this.type == 1) {
+        if (!menu) {
+            circleArray.forEach(element =>{
+                if (element.type == 0) {
+                    if(this.x < element.x + (2 * element.r) && this.x + (2 * this.r) > element.x  && this.y < element.y + (2 * element.r) && this.y + (2 * this.r) > element.y) {
+                        element.type = 1;
+                        element.color = "red";
+                        console.log("Collision");
+                    }
+                }
+            });                 
+            }
+        }
         this.x += this.dx;
         this.y += this.dy;
         
         this.draw();
-    }
-}
-
-
-
-function randomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)]; 
-    }
-    if (randomColors == true) {
-        return color;
-    }
-    else if (!randomColors) {
-        return "blue";
     }
 }
 

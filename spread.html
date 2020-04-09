@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- SPRRRRRRRRRRRRREEEEEEEEEEEEAAAAAAAAAADDDDDDDDDDDDDDDDD -->
 <html>
     <body>
         <header>
@@ -10,18 +10,10 @@
         <main>
             <div class="menu" id="menu">
                 <center>
-                    <h1 class="game1">Kill the Corona</h1>
-                    <h2 class="game1">Find the corona circle</h2>               
+                    <h1 class="game1">Stop the spread!</h1>
+                    <h2 class="game1">Kill the corona before it spreads</h2>               
                 </center>
                 <div id="options">
-                    <div class="checkbox">
-                        <input name="dis" type="checkbox" id="checkbox_0" checked>
-                        <label for="checkbox_0">DISSPEARING CIRCLES</label>
-                    </div> 
-                    <div class="checkbox">
-                        <input name="randColor" type="checkbox" id="checkbox_1" checked>
-                        <label for="checkbox_1">RANDOM COLORS</label>
-                    </div> 
                     <div class="checkbox">
                         <input name="randSize" type="checkbox" id="checkbox_2">
                         <label for="checkbox_2">RANDOM RADIUS</label>
@@ -32,14 +24,6 @@
                     </div> 
                     <span id="numCircles">NUMBER OF CIRCLES: <input id="circles" type="range" min="1" max="2000" class="slider" value="50"></span>
                     <span id="radiusSpan">CIRCLE RADIUS: <input id="radius" type="range" min="1" max="50" class="slider" value="35"></span>
-                    <!--<div id="adjust_speed">
-                        <span class="span">MAX VELOCITY: <input name="sliderMaxV" id="max_speed" type="range" min="1" max="100" class="slider" value="50"></span><br>
-                        <span class="span">MIN VELOCITY: <input name="sliderMinV" id="min_speed" type="range" min="1" max="100" class="slider" value="50"></span> 
-                    </div>
-                    <div id="adjust_radius">
-                        <span class="span">MAX RADIUS: <input name="sliderMaxR" id="max_radius" type="range" min="1" max="100" class="slider" value="50"></span><br>
-                        <span class="span">MIN RADIUS: <input name="sliderMinR" id="min_radius" type="range" min="1" max="100" class="slider" value="50"></span> 
-                    </div>-->
                     <span id="velocitySpan">CIRCLE VELOCITY: <input id="velocity" type="range" min="1" max="100" class="slider" value="50"></span>
                 </div>
                 <br>
@@ -67,9 +51,8 @@
             START: ENTER / SPACE<br>
             RESTART: R <br>
             MENU: ESC / M <br>
-            TOGGLE RANDOM COLOR: C <br>
             TOGGLE RANDOM SIZE: S
         </footer>
     </body>
-    <script src="assets/js/script.js"></script>
+    <script src="assets/js/spread.js"></script>
 </html>
