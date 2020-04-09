@@ -94,8 +94,8 @@ function generate() {
         var y = Math.random() * (innerHeight - r * 2) + r;
         var dxSet = 10;
         var dySet = 10;
-        var dx = 0;//10 * (Math.random() - 0.5);
-        var dy = 0;//10 * (Math.random() - 0.5);
+        var dx = 10 * (Math.random() - 0.5);
+        var dy = 10 * (Math.random() - 0.5);
         var color = randomColor();
 
         circleArray.push(new DrawCircle(x, y, r, dx, dy, color, index, rRand, dxSet, dySet));
