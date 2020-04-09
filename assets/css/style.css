@@ -56,3 +56,23 @@ button {
 .slider:hover {
   opacity: 1;
 }
+
+a {
+    text-decoration: none;
+    color:white;
+    font:"Roboto", monospace;
+}
+
+#back {
+    font-size: 30px;
+    left: 1%;
+    top: 1%;
+    position: absolute;
+}
+
+#next {
+    font-size: 30px;
+    right: 1%;
+    top: 1%;
+    position: absolute;
+}

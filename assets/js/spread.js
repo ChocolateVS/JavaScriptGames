@@ -1,3 +1,5 @@
+document.getElementById("back").innerHTML = "< FIND THE CORONA";
+
 /////////////MENU///////////
 document.getElementById("menu").style.display = "block";
 document.getElementById("restartMenu").style.display = "none";
