@@ -22,7 +22,8 @@
                         <input name="randSpeed" type="checkbox" id="checkbox_3" checked>
                         <label for="checkbox_3">RANDOM VELOCITY</label>
                     </div> 
-                    <span id="numCircles">NUMBER OF CIRCLES: <input id="circles" type="range" min="1" max="2000" class="slider" value="50"></span>
+                    <span id="numCircles">NUMBER OF CIRCLES: <input id="circles" type="range" min="1" max="100" class="slider" value="20"></span><br>
+                    <span id="numCircles">NUMBER OF CORONA: <input id="corona" type="range" min="1" max="10" class="slider" value="1"></span>
                     <span id="radiusSpan">CIRCLE RADIUS: <input id="radius" type="range" min="1" max="50" class="slider" value="35"></span>
                     <span id="velocitySpan">CIRCLE VELOCITY: <input id="velocity" type="range" min="1" max="100" class="slider" value="50"></span>
                 </div>
@@ -31,16 +32,15 @@
             </div>
             <div class="menu" id="restartMenu">
                 <center>
-                    <h1>You Killed It!</h1>
-                    <span>SCORE: <span id="score"></span></span><br>
+                    <h1>Threat Eliminated!</h1>
+                    <span>You Saved: <span id="score"></span><span>% of the population</span></span><br>
                     <button onClick="openMenu()" id="menuBtn">MENU</button>
                     <button onClick="restart()" id="restart">RESTART</button><br>
-                    <button onClick="continueGame()" id="continue">NOOOO LEMME KILL EM ALL</button>
                 </center>
             </div>
             <div class="menu" id="restartAllMenu">
                 <center>
-                    <h1>You Killed Em All!</h1>
+                    <h1>All Existance id DEAD!</h1>
                     <button onClick="openMenu()" id="menuBtn">MENU</button>
                     <button onClick="restart()" id="restart">RESTART</button><br>
                 </center>
